@@ -1,0 +1,170 @@
+<style>
+  .poem-section {
+    padding: 6rem 2rem;
+    text-align: center;
+    background: linear-gradient(180deg, transparent, rgba(194,88,122,0.05), transparent);
+  }
+  .poem-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 400;
+    margin-bottom: 3rem;
+    color: var(--blush);
+  }
+  .poem-body {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    line-height: 2.2;
+    color: var(--cream);
+    font-style: italic;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .poem-body span {
+    display: block;
+    opacity: 0;
+    transform: translateX(-15px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .poem-body span.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .poem-body .accent { color: var(--rose); }
+  .poem-body .gold { color: var(--gold); }
+
+  .petals-section {
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  .petals-label {
+    font-size: 0.75rem; letter-spacing: 0.5em; text-transform: uppercase;
+    color: var(--lilac); margin-bottom: 1rem;
+  }
+  .petals-hint {
+    font-style: italic; color: var(--lilac); font-size: 1.1rem; margin-bottom: 3rem;
+  }
+  #petal-canvas {
+    border-radius: 50%;
+    cursor: crosshair;
+    display: block;
+    margin: 0 auto;
+    background: radial-gradient(circle at 50% 50%, rgba(194,88,122,0.08), transparent 70%);
+    border: 1px solid rgba(201,169,110,0.1);
+  }
+
+  .closing {
+    padding: 8rem 2rem;
+    text-align: center;
+  }
+  .closing-main {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+  }
+  .closing-main em { font-style: italic; color: var(--rose); }
+  .closing-sub {
+    font-style: italic; color: var(--lilac);
+    font-size: 1.1rem; letter-spacing: 0.05em;
+  }
+  .closing-date {
+    margin-top: 3rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+  }
+
+  .petal-float {
+    position: fixed;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    font-size: 1.2rem;
+    animation: floatPetal 6s ease-in forwards;
+  }
+  @keyframes floatPetal {
+    0% { opacity: 0.9; transform: translateY(0) rotate(0deg); }
+    100% { opacity: 0; transform: translateY(-100vh) rotate(720deg); }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<!-- INTRO -->
+<div id="intro" onclick="startExperience()">
+  <div class="intro-date">8M</div>
+  <div class="intro-sub">Día Internacional de la Mujer</div>
+  <div class="intro-click">✦ Toca para celebrar ✦</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">✦ 8 de Marzo · Solo para ti ✦</div>
+    <h1 class="hero-title">
+      Feliz día,<br>
+      mi querida<br>
+      <em>mujercita hermosa</em> 🌸
+    </h1>
+    <div class="hero-line"></div>
+    <p class="hero-subtitle">
+      Y no es porque hoy sea <em>el día</em> — es porque tú mereces ser celebrada cada día, a cada hora, en cada momento.
+    </p>
+    <div class="scroll-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+      Sigue leyendo
+    </div>
+  </section>
+
+  <!-- PERSONAL CARDS -->
+  <section class="section">
+    <div class="section-label">✦ Para ti, solo para ti ✦</div>
+    <div class="quotes-grid">
+      <div class="quote-card">
+        <span class="quote-mark">🌟</span>
+        <p class="quote-text">No te celebro solo porque hoy sea <em>el día de la mujer</em>. Te celebro porque eres tú — y eso solo ya es la razón más grande del mundo.</p>
+      </div>
+      <div class="quote-card">
+        <span class="quote-mark">🌸</span>
+        <p class="quote-text">Eres la mejor mujercita de este mundo... y de todo este universo. Sin exagerar. Sin comparación. Solo tú.</p>
+      </div>
+      <div class="quote-card">
+        <span class="quote-mark">💫</span>
+        <p class="quote-text">Que este día te recuerde lo increíble que eres — aunque tú a veces no lo veas. Yo sí lo veo. Siempre lo he visto.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- POEM -->
+  <div class="poem-section">
+    <h2 class="poem-title">Para la mejor mujercita<br>de este mundo y de todo el universo</h2>
+    <div class="poem-body" id="poem">
+      <span>Eres la persona más bonita que existe,</span>
+      <span class="accent">no por un día, sino por lo que eres cada día.</span>
+      <span>&nbsp;</span>
+      <span>Por tu fuerza, aunque a veces no la sientas.</span>
+      <span>Por tu corazón, aunque a veces lo escondes.</span>
+      <span>&nbsp;</span>
+      <span class="gold">Por todo lo que has vivido y seguido adelante.</span>
+      <span class="gold">Por todo lo que eres sin siquiera intentarlo.</span>
+      <span>&nbsp;</span>
+      <span>Hoy, mañana y siempre —</span>
+      <span class="accent">mereces ser celebrada. 🌸</span>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE PETALS -->
+  <section class="petals-section">
+    <div class="petals-label">✦ Jardín interactivo ✦</div>
+    <p class="petals-hint">Mueve el cursor para florecer</p>
+    <canvas id="petal-canvas" width="500" height="500"></canvas>
+  </section>
